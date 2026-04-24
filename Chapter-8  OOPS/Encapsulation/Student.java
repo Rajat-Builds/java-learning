@@ -1,3 +1,7 @@
+// Encapsulation means making your variables private and controlling access to them through getters and setters, so that invalid data can never get into your object. // 
+
+
+
 public class Student {
     private String name;
     private int age;
@@ -16,7 +20,7 @@ public class Student {
     }
 
     public void setName(String name) {
-        if (name.isEmpty() || name == null) {
+        if (name.isEmpty() || name == null) { // to check if a String is empty we use - name.isEmpty() and to check null we use - name == null // 
             System.out.println("Invalid name. ");
         } else {
             System.out.println(this.name = name);
