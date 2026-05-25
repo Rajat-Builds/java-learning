@@ -19,7 +19,17 @@
 - `remove()` — removes a key-value pair
 - `keySet()` — gets all keys in the map
 
+**HashSet**
+- Stores unique values only — no duplicates allowed
+- `add()` — adds an item to the set
+- `remove()` — removes an item
+- `contains()` — checks if an item exists
+- `size()` — returns total number of items
+- Order is not guaranteed — items are not stored in insertion order
+
 ### Key concepts
 - ArrayList maintains insertion order — items stay in the order you added them
 - HashMap does not maintain order — focus is on fast lookup by key
-- Both are part of `java.util` package — must be imported
+- HashSet automatically removes duplicates — useful for storing unique values
+- All three are part of `java.util` package — must be imported
+- ArrayList vs HashSet — use ArrayList when order matters, HashSet when uniqueness matters
