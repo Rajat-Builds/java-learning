@@ -26,16 +26,32 @@
 - `@RequestParam` — receives query parameters from URL like `?name=Rajat`
 - Stored students in a class level list so data persists during server runtime
 - Built full flow — POST a student, GET all students, Search by name
-- Tested everything in Postman
 - `POST /students/add` — add a new student
 - `GET /students/search?name=Rajat` — search student by name
 
+**Day 4 — DELETE and PUT Requests, Full CRUD**
+- `@DeleteMapping` — handles DELETE requests
+- `@PutMapping` — handles PUT requests
+- `@RequestParam` with multiple parameters — `?name=Rajat&newMarks=99`
+- Added `setMarks()` setter to Student class
+- Built complete CRUD API — Create, Read, Update, Delete all working
+- Tested all 4 operations in Postman
+- HTTP status codes — `200 OK`, `404 Not Found`, `400 Bad Request`, `405 Method Not Allowed`
+
+### Complete API Endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/students` | Get all students |
+| GET | `/students/search?name=Rajat` | Search student by name |
+| POST | `/students/add` | Add a new student |
+| PUT | `/students/update?name=Rajat&newMarks=99` | Update student marks |
+| DELETE | `/students/delete?name=Rajat` | Delete a student |
+
 ### Key concepts
 - Spring Boot auto-configures everything — no complex setup needed
-- Every endpoint is a method inside a `@RestController` class
-- `@GetMapping` maps GET requests, `@PostMapping` maps POST requests
+- `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping` map HTTP methods to Java methods
 - `@RequestBody` converts incoming JSON to a Java object automatically
 - `@RequestParam` reads query parameters from the URL
-- Getters must be present in model classes for JSON conversion to work
+- CRUD = Create, Read, Update, Delete — the four basic operations of any API
 - Postman is used to test API endpoints without a frontend
 - Spring Boot is the most used Java framework in backend development
