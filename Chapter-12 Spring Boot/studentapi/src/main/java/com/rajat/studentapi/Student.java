@@ -23,4 +23,8 @@ public class Student {
     public double getMarks() {
         return marks;
     }
+
+   public void setMarks(double marks){
+    this.marks = marks;
+   }
 }
