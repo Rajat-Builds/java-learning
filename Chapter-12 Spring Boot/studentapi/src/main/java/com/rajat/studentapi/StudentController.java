@@ -1,8 +1,9 @@
 package com.rajat.studentapi;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class StudentController {
 
-    List<Student> students = new ArrayList<>();
+@Autowired
+StudentService studentService;
+
+    
     @GetMapping("/student")
     public Student getStudent() {
         Student s = new Student("Rajat", 20, 85.5);
@@ -23,44 +27,27 @@ public class StudentController {
 
     @GetMapping("/students")
     public List<Student> getAllStudents() {
-        return students;
+        return studentService.getAllStudents();
     }
 
     @PostMapping("/students/add")
     public String addStudent(@RequestBody Student student) {
-        students.add(student);
-        return "Student added: " + student.getName();
+        return studentService.addStudent(student); 
     }
 
     @GetMapping("/students/search")
     public String searchStudent(@RequestParam String name) {
-        for (Student student : students){
-            if (student.getName().equals(name)) {
-                return student.getName() + " found!";
-            }
-        }
-        return "Student not found";
+        return studentService.searchStudent(name);
     }
+
     @DeleteMapping("/students/delete")
         public String deleteStudent (@RequestParam String name){
-            for(Student student : students){
-                if (student.getName().equals(name)) {
-                    students.remove(student);
-                    return "Student deleted: " +name;
-                } 
+        return studentService.deleteStudent(name)  ;
         }
-        return "Student not found";
-    }
 
     @PutMapping("/students/update")
     public String updateStudent(@RequestParam String name, @RequestParam double newMarks){
-for(Student student : students){
-    if(student.getName().equals(name)) {
-        student.setMarks(newMarks);
-        return "Marks update for: " + name;
-    }
-}
-return "Student not found";
+return studentService.updateStudent(name, newMarks);
     }
 
 
