@@ -38,6 +38,15 @@
 - Tested all 4 operations in Postman
 - HTTP status codes — `200 OK`, `404 Not Found`, `400 Bad Request`, `405 Method Not Allowed`
 
+**Day 5 — Service Layer**
+- Why Controller should not contain business logic
+- Controller — only receives request and calls service
+- Service — contains all the actual logic — finding, adding, deleting, updating
+- `@Service` — tells Spring Boot this class is a service
+- `@Autowired` — Spring Boot automatically creates and injects the service
+- Dependency Injection — Spring manages object creation, no need to write `new ServiceName()`
+- Refactored entire StudentController to use StudentService
+
 ### Complete API Endpoints
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -53,5 +62,6 @@
 - `@RequestBody` converts incoming JSON to a Java object automatically
 - `@RequestParam` reads query parameters from the URL
 - CRUD = Create, Read, Update, Delete — the four basic operations of any API
+- Controller handles requests, Service handles logic — always keep them separate
+- `@Autowired` and Dependency Injection are core Spring Boot concepts asked in every interview
 - Postman is used to test API endpoints without a frontend
-- Spring Boot is the most used Java framework in backend development
