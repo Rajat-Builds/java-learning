@@ -25,27 +25,33 @@
 - `@RequestBody` — converts incoming JSON to Java object automatically
 - `@RequestParam` — receives query parameters from URL like `?name=Rajat`
 - Stored students in a class level list so data persists during server runtime
-- Built full flow — POST a student, GET all students, Search by name
 - `POST /students/add` — add a new student
 - `GET /students/search?name=Rajat` — search student by name
 
 **Day 4 — DELETE and PUT Requests, Full CRUD**
 - `@DeleteMapping` — handles DELETE requests
 - `@PutMapping` — handles PUT requests
-- `@RequestParam` with multiple parameters — `?name=Rajat&newMarks=99`
-- Added `setMarks()` setter to Student class
 - Built complete CRUD API — Create, Read, Update, Delete all working
 - Tested all 4 operations in Postman
 - HTTP status codes — `200 OK`, `404 Not Found`, `400 Bad Request`, `405 Method Not Allowed`
 
 **Day 5 — Service Layer**
-- Why Controller should not contain business logic
 - Controller — only receives request and calls service
-- Service — contains all the actual logic — finding, adding, deleting, updating
+- Service — contains all the actual logic
 - `@Service` — tells Spring Boot this class is a service
-- `@Autowired` — Spring Boot automatically creates and injects the service
-- Dependency Injection — Spring manages object creation, no need to write `new ServiceName()`
+- `@Autowired` — Spring Boot automatically injects the service
+- Dependency Injection — Spring manages object creation
 - Refactored entire StudentController to use StudentService
+
+**Day 6 — MySQL and JPA Integration**
+- Installed MySQL and created `studentdb` database
+- Connected Spring Boot to MySQL via `application.properties`
+- Added JPA and MySQL dependencies to `pom.xml`
+- `@Entity` — marks Student class as a database table
+- `@Id` and `@GeneratedValue` — auto assigns unique ID to each student
+- `StudentRepository` extends `JpaRepository` — gives free CRUD operations
+- Updated StudentService to use repository instead of in-memory list
+- Data now saves permanently in MySQL — survives server restarts
 
 ### Complete API Endpoints
 | Method | Endpoint | Description |
@@ -57,11 +63,9 @@
 | DELETE | `/students/delete?name=Rajat` | Delete a student |
 
 ### Key concepts
-- Spring Boot auto-configures everything — no complex setup needed
-- `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping` map HTTP methods to Java methods
-- `@RequestBody` converts incoming JSON to a Java object automatically
-- `@RequestParam` reads query parameters from the URL
-- CRUD = Create, Read, Update, Delete — the four basic operations of any API
 - Controller handles requests, Service handles logic — always keep them separate
 - `@Autowired` and Dependency Injection are core Spring Boot concepts asked in every interview
+- `@Entity` maps a Java class to a database table
+- JpaRepository gives you save, findAll, findById, delete for free — no SQL needed
+- Data stored in MySQL is permanent — in-memory list data is lost on server restart
 - Postman is used to test API endpoints without a frontend
