@@ -51,6 +51,10 @@ public class StudentService {
         }
         return "Student not found";
     }
+
+    public Student getStudentById(int id) {
+        return studentRepository.findById(id).get();
+    }
 }
 
 

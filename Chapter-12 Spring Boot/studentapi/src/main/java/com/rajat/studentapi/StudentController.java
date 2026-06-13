@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class StudentController {
@@ -48,6 +49,11 @@ StudentService studentService;
     @PutMapping("/students/update")
     public String updateStudent(@RequestParam String name, @RequestParam double newMarks){
 return studentService.updateStudent(name, newMarks);
+    }
+
+    @GetMapping("/students/{id}")
+    public Student getStudentById(@PathVariable int id) {
+        return studentService.getStudentById(id);
     }
 
 
