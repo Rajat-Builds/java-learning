@@ -53,10 +53,20 @@
 - Updated StudentService to use repository instead of in-memory list
 - Data now saves permanently in MySQL — survives server restarts
 
+**Day 7 — PathVariable and MySQL Revision**
+- Revised MySQL, `@Entity`, `@Id`, `@GeneratedValue`, JpaRepository, `application.properties`
+- Confirmed data persists in MySQL across server restarts
+- `@PathVariable` — extracts value directly from the URL path like `/students/1`
+- Difference between `@PathVariable` and `@RequestParam`:
+  - `@PathVariable` — value is part of the URL: `/students/{id}`
+  - `@RequestParam` — value is a query parameter: `/students/search?name=Rajat`
+- Added `GET /students/{id}` — get student by ID
+
 ### Complete API Endpoints
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/students` | Get all students |
+| GET | `/students/{id}` | Get student by ID |
 | GET | `/students/search?name=Rajat` | Search student by name |
 | POST | `/students/add` | Add a new student |
 | PUT | `/students/update?name=Rajat&newMarks=99` | Update student marks |
@@ -68,4 +78,5 @@
 - `@Entity` maps a Java class to a database table
 - JpaRepository gives you save, findAll, findById, delete for free — no SQL needed
 - Data stored in MySQL is permanent — in-memory list data is lost on server restart
+- `@PathVariable` reads from URL path, `@RequestParam` reads from query string
 - Postman is used to test API endpoints without a frontend
