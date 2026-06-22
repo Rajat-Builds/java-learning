@@ -3,6 +3,7 @@ package com.rajat.studentapi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -42,19 +43,23 @@ public class StudentService {
         return "Student not found";
     }
 
-    public String searchStudent(String name) {
+    public Student searchStudent(String name) {
         List<Student> students = studentRepository.findAll();
         for (Student student : students) {
             if (student.getName().equals(name)) {
-                return student.getName() + " found!";
+                return student ;
             }
         }
-        return "Student not found";
+        return null ;
     }
 
-    public Student getStudentById(int id) {
-        return studentRepository.findById(id).get();
+   public Student getStudentById(int id) {
+    Optional<Student> studentOptional = studentRepository.findById(id);
+    if (studentOptional.isPresent()) {
+        return studentOptional.get();
     }
+    return null;
+}
 }
 
 
