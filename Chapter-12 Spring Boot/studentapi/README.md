@@ -62,12 +62,22 @@
   - `@RequestParam` — value is a query parameter: `/students/search?name=Rajat`
 - Added `GET /students/{id}` — get student by ID
 
+**Day 8 — Error Handling**
+- `findById().get()` crashes with `500 Internal Server Error` when student doesn't exist
+- `Optional` — a container that may or may not hold a value
+- `.isPresent()` — safely checks if a value exists before accessing it
+- Proper HTTP status codes — `404 Not Found` for missing resources instead of crashing or returning empty `200`
+- `ResponseEntity` — controls both the status code and response body
+- Updated `getStudentById()` to return `404` properly instead of crashing
+- Updated `searchStudent()` to return the actual Student object with proper status codes instead of a plain message
+- Real world debugging — used `netstat` to find a process stuck on port 8080, then `taskkill` to kill it
+
 ### Complete API Endpoints
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/students` | Get all students |
-| GET | `/students/{id}` | Get student by ID |
-| GET | `/students/search?name=Rajat` | Search student by name |
+| GET | `/students/{id}` | Get student by ID — 200 or 404 |
+| GET | `/students/search?name=Rajat` | Search student by name — 200 or 404 |
 | POST | `/students/add` | Add a new student |
 | PUT | `/students/update?name=Rajat&newMarks=99` | Update student marks |
 | DELETE | `/students/delete?name=Rajat` | Delete a student |
@@ -79,4 +89,7 @@
 - JpaRepository gives you save, findAll, findById, delete for free — no SQL needed
 - Data stored in MySQL is permanent — in-memory list data is lost on server restart
 - `@PathVariable` reads from URL path, `@RequestParam` reads from query string
+- `Optional` prevents crashes when a value might not exist
+- `ResponseEntity` lets you return both data and the correct HTTP status code
+- Always handle the "not found" case explicitly — never let the API crash
 - Postman is used to test API endpoints without a frontend
