@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
 @RestController
 public class StudentController {
 
@@ -36,18 +35,24 @@ public class StudentController {
         return studentService.addStudent(student);
     }
 
-   @GetMapping("/students/search")
-public ResponseEntity<Student> searchStudent(@RequestParam String name) {
-    Student student = studentService.searchStudent(name);
-    if (student == null) {
-        return ResponseEntity.notFound().build();
+    @GetMapping("/students/search")
+    public ResponseEntity<Student> searchStudent(@RequestParam String name) {
+        Student student = studentService.searchStudent(name);
+        if (student == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(student);
     }
-    return ResponseEntity.ok(student);
-}
 
-    @DeleteMapping("/students/delete")
-    public String deleteStudent(@RequestParam String name) {
-        return studentService.deleteStudent(name);
+    @DeleteMapping("/students/{id}")
+    public ResponseEntity<String> deleteStudentById(@PathVariable int id) {
+
+        boolean deleted = studentService.deleteStudentById(id);
+
+        if (deleted) {
+            return ResponseEntity.ok("Student deleted successfully");
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PutMapping("/students/update")

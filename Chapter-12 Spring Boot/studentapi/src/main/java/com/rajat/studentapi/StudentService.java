@@ -20,16 +20,16 @@ public class StudentService {
         return "Student added: " + student.getName();
     }
 
-    public String deleteStudent(String name) {
-        List<Student> students = studentRepository.findAll();
-        for (Student student : students) {
-            if (student.getName().equals(name)) {
-                studentRepository.delete(student);
-                return "Student deleted: " + name;
+    public boolean deleteStudentById(int id) {
+         Optional<Student> studentOptional = studentRepository.findById(id);
+       
+            if (studentOptional.isPresent()) {
+                studentRepository.deleteById(id);
+                return true;
             }
-        }
-        return "Student not found";
-    }
+        
+        return false;
+}
 
     public String updateStudent(String name, double newMarks) {
         List<Student> students = studentRepository.findAll();
