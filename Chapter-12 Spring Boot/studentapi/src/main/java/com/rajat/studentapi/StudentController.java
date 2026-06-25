@@ -55,9 +55,13 @@ public class StudentController {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/students/update")
-    public String updateStudent(@RequestParam String name, @RequestParam double newMarks) {
-        return studentService.updateStudent(name, newMarks);
+    @PutMapping("/students/{id}")
+    public ResponseEntity<Student> updateStudentById(@PathVariable int id , @RequestParam double newMarks){
+       Student student = studentService.updateStudentById(id, newMarks);
+       if (student == null){
+        return ResponseEntity.notFound().build();
+       }
+       return ResponseEntity.ok(student);
     }
 
     @GetMapping("/students/{id}")

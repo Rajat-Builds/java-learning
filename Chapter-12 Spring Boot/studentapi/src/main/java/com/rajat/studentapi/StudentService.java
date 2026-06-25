@@ -21,45 +21,42 @@ public class StudentService {
     }
 
     public boolean deleteStudentById(int id) {
-         Optional<Student> studentOptional = studentRepository.findById(id);
-       
-            if (studentOptional.isPresent()) {
-                studentRepository.deleteById(id);
-                return true;
-            }
-        
-        return false;
-}
+        Optional<Student> studentOptional = studentRepository.findById(id);
 
-    public String updateStudent(String name, double newMarks) {
-        List<Student> students = studentRepository.findAll();
-        for (Student student : students) {
-            if (student.getName().equals(name)) {
-                student.setMarks(newMarks);
-                studentRepository.save(student);
-                return "Marks updated for: " + name;
-            }
+        if (studentOptional.isPresent()) {
+            studentRepository.deleteById(id);
+            return true;
         }
-        return "Student not found";
+
+        return false;
+    }
+
+    public Student updateStudentById(int id, double newmarks) {
+        Optional<Student> studentOptional = studentRepository.findById(id);
+        if (studentOptional.isPresent()) {
+            Student student = studentOptional.get();
+            student.setMarks(newmarks);
+            studentRepository.save(student);
+            return student;
+        }
+        return null;
     }
 
     public Student searchStudent(String name) {
         List<Student> students = studentRepository.findAll();
         for (Student student : students) {
             if (student.getName().equals(name)) {
-                return student ;
+                return student;
             }
         }
-        return null ;
+        return null;
     }
 
-   public Student getStudentById(int id) {
-    Optional<Student> studentOptional = studentRepository.findById(id);
-    if (studentOptional.isPresent()) {
-        return studentOptional.get();
+    public Student getStudentById(int id) {
+        Optional<Student> studentOptional = studentRepository.findById(id);
+        if (studentOptional.isPresent()) {
+            return studentOptional.get();
+        }
+        return null;
     }
-    return null;
 }
-}
-
-
