@@ -73,11 +73,21 @@
 - Real world debugging — used `netstat` to find a process stuck on port 8080, then `taskkill` to kill it
 
 **Day 9 — DELETE by ID**
-- Started MySQL and Spring Boot independently — recalled the setup steps with minor corrections
-- Added `deleteStudentById(int id)` in `StudentService.java` using the `Optional` pattern
+- Added `deleteStudentById(int id)` in `StudentService.java` using the Optional pattern
 - Added `DELETE /students/{id}` endpoint using `@PathVariable` and `ResponseEntity`
 - Tested deleting a student by ID — confirmed removal from the database
 - Reinforced the find-check-respond pattern: `findById()` → `isPresent()` → return proper status code (200 or 404)
+
+**Day 10 — UPDATE by ID**
+- Built `updateStudentById(int id, double newMarks)` using the Optional pattern: find, check, modify, save, return
+- Built `PUT /students/{id}` combining `@PathVariable` and `@RequestParam`, using `ResponseEntity`
+- Tested updating a student's marks via ID and confirmed it with a GET request
+- Completed full CRUD with both name-based and ID-based operations
+
+**Key difference learned — DELETE vs UPDATE return types**
+- `deleteStudentById()` only checks existence and deletes — returns a simple `boolean` since no data needs to be sent back
+- `updateStudentById()` modifies the object (`student.setMarks(newMarks)`) before saving — must return the actual `Student` object since the caller needs to see the updated data
+- This is why delete uses `ResponseEntity<String>` (success message) while update uses `ResponseEntity<Student>` (the updated object)
 
 ### Complete API Endpoints
 | Method | Endpoint | Description |
@@ -86,7 +96,8 @@
 | GET | `/students/{id}` | Get student by ID — 200 or 404 |
 | GET | `/students/search?name=Rajat` | Search student by name — 200 or 404 |
 | POST | `/students/add` | Add a new student |
-| PUT | `/students/update?name=Rajat&newMarks=99` | Update student marks |
+| PUT | `/students/update?name=Rajat&newMarks=99` | Update student marks by name |
+| PUT | `/students/{id}?newMarks=99` | Update student marks by ID |
 | DELETE | `/students/delete?name=Rajat` | Delete a student by name |
 | DELETE | `/students/{id}` | Delete a student by ID |
 
@@ -99,6 +110,6 @@
 - `@PathVariable` reads from URL path, `@RequestParam` reads from query string
 - `Optional` prevents crashes when a value might not exist
 - `ResponseEntity` lets you return both data and the correct HTTP status code
-- Always handle the "not found" case explicitly — never let the API crash
+- Return type depends on what the caller needs — boolean for delete confirmations, the actual object for updates
 - The find-check-respond pattern is the standard way to safely handle database lookups
 - Postman is used to test API endpoints without a frontend
