@@ -72,6 +72,13 @@
 - Updated `searchStudent()` to return the actual Student object with proper status codes instead of a plain message
 - Real world debugging — used `netstat` to find a process stuck on port 8080, then `taskkill` to kill it
 
+**Day 9 — DELETE by ID**
+- Started MySQL and Spring Boot independently — recalled the setup steps with minor corrections
+- Added `deleteStudentById(int id)` in `StudentService.java` using the `Optional` pattern
+- Added `DELETE /students/{id}` endpoint using `@PathVariable` and `ResponseEntity`
+- Tested deleting a student by ID — confirmed removal from the database
+- Reinforced the find-check-respond pattern: `findById()` → `isPresent()` → return proper status code (200 or 404)
+
 ### Complete API Endpoints
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -80,7 +87,8 @@
 | GET | `/students/search?name=Rajat` | Search student by name — 200 or 404 |
 | POST | `/students/add` | Add a new student |
 | PUT | `/students/update?name=Rajat&newMarks=99` | Update student marks |
-| DELETE | `/students/delete?name=Rajat` | Delete a student |
+| DELETE | `/students/delete?name=Rajat` | Delete a student by name |
+| DELETE | `/students/{id}` | Delete a student by ID |
 
 ### Key concepts
 - Controller handles requests, Service handles logic — always keep them separate
@@ -92,4 +100,5 @@
 - `Optional` prevents crashes when a value might not exist
 - `ResponseEntity` lets you return both data and the correct HTTP status code
 - Always handle the "not found" case explicitly — never let the API crash
+- The find-check-respond pattern is the standard way to safely handle database lookups
 - Postman is used to test API endpoints without a frontend
