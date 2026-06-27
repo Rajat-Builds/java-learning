@@ -89,6 +89,18 @@
 - `updateStudentById()` modifies the object (`student.setMarks(newMarks)`) before saving — must return the actual `Student` object since the caller needs to see the updated data
 - This is why delete uses `ResponseEntity<String>` (success message) while update uses `ResponseEntity<Student>` (the updated object)
 
+**Day 11 — Input Validation**
+- Discovered the API was accepting invalid data — empty names, negative ages, marks of 999
+- Learned the difference between key HTTP error codes:
+  - `400 Bad Request` — invalid data sent by the client
+  - `404 Not Found` — requested resource doesn't exist
+  - `500 Internal Server Error` — server crashed due to a bug
+- Added validation logic inside `addStudent()` — checking for empty name, age ≤ 0, and marks outside 0–100 range, returning `null` when invalid
+- Updated controller to return `400 Bad Request` when validation fails, `200 OK` when it succeeds
+- Real-world debugging — a stray space in the Postman URL (`/students/add%20`) caused a confusing `405 Method Not Allowed` error; learned to check exact URLs carefully when errors seem unrelated to the code
+- Killed a stuck process on port 8080 again using `netstat` and `taskkill`
+- Manually deleted a bad record directly in MySQL using raw SQL — `DELETE FROM student WHERE id = 4`
+
 ### Complete API Endpoints
 | Method | Endpoint | Description |
 |--------|----------|-------------|
