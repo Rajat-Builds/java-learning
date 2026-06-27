@@ -15,10 +15,19 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public String addStudent(Student student) {
-        studentRepository.save(student);
-        return "Student added: " + student.getName();
+   public String addStudent(Student student){
+    if (student.getName() == null || student.getName().trim().isEmpty()) {
+        return null;
     }
+    if (student.getAge() <= 0) {
+        return null;
+    }
+    if (student.getMarks() < 0 || student.getMarks() > 100) {
+        return null;
+    }
+    studentRepository.save(student);
+    return "Student added: " + student.getName();
+   }
 
     public boolean deleteStudentById(int id) {
         Optional<Student> studentOptional = studentRepository.findById(id);

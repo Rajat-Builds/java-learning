@@ -31,8 +31,12 @@ public class StudentController {
     }
 
     @PostMapping("/students/add")
-    public String addStudent(@RequestBody Student student) {
-        return studentService.addStudent(student);
+    public ResponseEntity<String> addStudent(@RequestBody Student student) {
+        String result = studentService.addStudent(student);
+        if (result == null) {
+            return ResponseEntity.badRequest().body("Invalid student data");
+        }
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/students/search")
@@ -56,12 +60,12 @@ public class StudentController {
     }
 
     @PutMapping("/students/{id}")
-    public ResponseEntity<Student> updateStudentById(@PathVariable int id , @RequestParam double newMarks){
-       Student student = studentService.updateStudentById(id, newMarks);
-       if (student == null){
-        return ResponseEntity.notFound().build();
-       }
-       return ResponseEntity.ok(student);
+    public ResponseEntity<Student> updateStudentById(@PathVariable int id, @RequestParam double newMarks) {
+        Student student = studentService.updateStudentById(id, newMarks);
+        if (student == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(student);
     }
 
     @GetMapping("/students/{id}")
