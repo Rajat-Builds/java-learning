@@ -77,4 +77,18 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
+    @Autowired
+    StudentRepository studentRepository;
+
+    @GetMapping("/students/olderThan/{age}")
+    public List<Student> getStudentsOlderThan(@PathVariable int age) {
+        return studentRepository.findByAgeGreaterThan(age);
+    }
+
+    
+    @GetMapping("/students/marksAbove/{marks}")
+    public List<Student> getStudentsMarksAbove(@PathVariable double marks){
+        return studentRepository.findByMarksGreaterThan(marks);
+    }
+
 }
