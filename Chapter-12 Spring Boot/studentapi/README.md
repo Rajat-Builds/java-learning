@@ -73,8 +73,8 @@
 - Real world debugging — used `netstat` to find a process stuck on port 8080, then `taskkill` to kill it
 
 **Day 9 — DELETE by ID**
-- Added `deleteStudentById(int id)` in `StudentService.java` using the Optional pattern
-- Added `DELETE /students/{id}` endpoint using `@PathVariable` and `ResponseEntity`
+- Added `deleteStudentById(int id)` using the Optional pattern
+- Added `DELETE /students/{id}` using `@PathVariable` and `ResponseEntity`
 - Tested deleting a student by ID — confirmed removal from the database
 - Reinforced the find-check-respond pattern: `findById()` → `isPresent()` → return proper status code (200 or 404)
 
@@ -86,7 +86,7 @@
 
 **Key difference learned — DELETE vs UPDATE return types**
 - `deleteStudentById()` only checks existence and deletes — returns a simple `boolean` since no data needs to be sent back
-- `updateStudentById()` modifies the object (`student.setMarks(newMarks)`) before saving — must return the actual `Student` object since the caller needs to see the updated data
+- `updateStudentById()` modifies the object before saving — must return the actual `Student` object since the caller needs to see the updated data
 - This is why delete uses `ResponseEntity<String>` (success message) while update uses `ResponseEntity<Student>` (the updated object)
 
 **Day 11 — Input Validation**
@@ -101,13 +101,23 @@
 - Killed a stuck process on port 8080 again using `netstat` and `taskkill`
 - Manually deleted a bad record directly in MySQL using raw SQL — `DELETE FROM student WHERE id = 4`
 
+**Day 12 — Derived Query Methods**
+- Hit a real startup-order bug — Spring Boot failed with `Communications link failure` because MySQL wasn't started first
+- Learned that MySQL must always be running before Spring Boot, in a separate window, every time
+- Derived query methods — naming a method correctly in `StudentRepository.java` (like `findByAgeGreaterThan`) makes Spring Data JPA automatically generate the SQL query
+- No loop, no manual filtering, no SQL written by hand
+- Built `findByAgeGreaterThan(int age)` exposed through `GET /students/olderThan/{age}`
+- Built `findByMarksGreaterThan(double marks)` exposed through `GET /students/marksAbove/{marks}`
+
 ### Complete API Endpoints
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/students` | Get all students |
 | GET | `/students/{id}` | Get student by ID — 200 or 404 |
 | GET | `/students/search?name=Rajat` | Search student by name — 200 or 404 |
-| POST | `/students/add` | Add a new student |
+| GET | `/students/olderThan/{age}` | Get students older than given age |
+| GET | `/students/marksAbove/{marks}` | Get students with marks above given value |
+| POST | `/students/add` | Add a new student — validates input, 400 if invalid |
 | PUT | `/students/update?name=Rajat&newMarks=99` | Update student marks by name |
 | PUT | `/students/{id}?newMarks=99` | Update student marks by ID |
 | DELETE | `/students/delete?name=Rajat` | Delete a student by name |
@@ -124,4 +134,6 @@
 - `ResponseEntity` lets you return both data and the correct HTTP status code
 - Return type depends on what the caller needs — boolean for delete confirmations, the actual object for updates
 - The find-check-respond pattern is the standard way to safely handle database lookups
+- Spring Data JPA generates SQL automatically from correctly named repository methods — no manual queries needed
+- MySQL server must be running before Spring Boot starts, every single time
 - Postman is used to test API endpoints without a frontend
