@@ -137,3 +137,9 @@
 - Spring Data JPA generates SQL automatically from correctly named repository methods — no manual queries needed
 - MySQL server must be running before Spring Boot starts, every single time
 - Postman is used to test API endpoints without a frontend
+
+### Interview Preparation
+- **Controller-Service-Repository pattern** — Controller receives request, Service handles logic, Repository talks to database
+- **Separation of Concerns** — each layer has one responsibility and does not interfere with others
+- **Validation flow** — validate input in Service, return 400 Bad Request from Controller if invalid
+- Being able to explain your own project clearly is as important as writing it
