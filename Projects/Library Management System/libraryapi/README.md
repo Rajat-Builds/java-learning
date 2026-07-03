@@ -1,23 +1,36 @@
 # Library Management REST API
 
-A Spring Boot REST API for managing library books with full CRUD operations.
+A REST API built with Spring Boot and MySQL to manage a library's book collection.
+Built independently to apply Spring Boot concepts learned in Chapter 12.
 
-## Technologies Used
+## Tech Stack
 - Java
 - Spring Boot
 - MySQL
-- Spring Data JPA
+- JPA / Hibernate
 - Postman (for testing)
 
 ## Features
-- Add, update, delete books
-- Get all books or search by ID
+- Add a new book
+- Get all books
+- Get book by ID
 - Search books by author
-- Find books below a certain price
-- Input validation with proper error responses
+- Filter books by price
+- Update book details
+- Delete a book
+
+## Concepts Used
+- `@RestController`, `@Service`, `@Repository` — layered architecture
+- `@Entity`, `@Id`, `@GeneratedValue` — JPA mapping to MySQL
+- `JpaRepository` — free CRUD operations without writing SQL
+- Derived query methods — `findByAuthor()`, `findByPriceLessThan()`
+- `Optional` and `isPresent()` — safe database lookups
+- `ResponseEntity` — proper HTTP status codes (200, 400, 404)
+- Input validation — preventing invalid data from entering the database
+- Separation of Concerns — Controller, Service, Repository each have one job
 
 ## How to Run
-1. Start MySQL server
-2. Create database: CREATE DATABASE librarydb;
-3. Run: mvnw spring-boot:run
-4. Test endpoints via Postman on localhost:8080
+1. Start MySQL and create database: `CREATE DATABASE librarydb;`
+2. Update `application.properties` with your MySQL credentials
+3. Run the Spring Boot application
+4. Test endpoints using Postman on `http://localhost:8080`
