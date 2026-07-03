@@ -1,4 +1,4 @@
-## Chapter 12 — Spring Boot
+## Chapter 12 — Spring Boot 
 
 ### What I learned
 
