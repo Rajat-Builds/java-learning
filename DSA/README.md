@@ -8,6 +8,7 @@ Each day folder contains solved problems with approach and complexity notes.
 |-----|-------|----------------|
 | Day 01 | Arrays — Two Pointer | LeetCode 26 - Remove Duplicates from Sorted Array |
 | Day 02 | Strings — Two Pointer | LeetCode 125 - Valid Palindrome |
+| Day 03 | LinkedList — Node class, chain traversal | Built from scratch |
 
 ### Approach
 - Solving problems on LeetCode
