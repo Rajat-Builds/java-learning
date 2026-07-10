@@ -10,6 +10,7 @@ Each day folder contains solved problems with approach and complexity notes.
 | Day 02 | Strings — Two Pointer | LeetCode 125 - Valid Palindrome |
 | Day 03 | LinkedList — Node class, chain traversal | Built from scratch |
 | Day 04 | LinkedList — Reverse and Middle node | LeetCode 206 - Reverse Linked List, LeetCode 876 - Middle of Linked List |
+| Day 05 | LinkedList — Cycle Detection, Stack — Valid Parentheses | LeetCode 141 - Linked List Cycle, LeetCode 20 - Valid Parentheses |
 
 ### Approach
 - Solving problems on LeetCode
