@@ -1,6 +1,6 @@
 ## DSA — Data Structures and Algorithms
 
-Tracking my DSA practice as part of a 100-day Java learning journey.
+Tracking my DSA practice as part of a Java learning journey.
 Each day folder contains solved problems with approach and complexity notes.
 
 ### Progress
@@ -13,6 +13,7 @@ Each day folder contains solved problems with approach and complexity notes.
 | Day 05 | LinkedList — Cycle Detection, Stack — Valid Parentheses | LeetCode 141 - Linked List Cycle, LeetCode 20 - Valid Parentheses |
 | Day 06 | Stack — Min Stack | LeetCode 155 - Min Stack |
 | Day 07 | Queue — Implement using Stacks, Sorting — Bubble Sort | LeetCode 232 - Implement Queue using Stacks, Bubble Sort with optimization |
+| Day 08 | Recursion — Factorial, Fibonacci, Power of Two | LeetCode 231 - Power of Two |
 
 ### Approach
 - Solving problems on LeetCode
