@@ -3,9 +3,8 @@
 Tracking my DSA practice as part of a Java learning journey.
 Each day folder contains solved problems with approach and complexity notes.
 
-### Progress
 | Day | Topic | Problems Solved |
-|-----|-------|----------------|
+|-----|-------|-----------------|
 | Day 01 | Arrays — Two Pointer | LeetCode 26 - Remove Duplicates from Sorted Array |
 | Day 02 | Strings — Two Pointer | LeetCode 125 - Valid Palindrome |
 | Day 03 | LinkedList — Node class, chain traversal | Built from scratch |
@@ -14,6 +13,7 @@ Each day folder contains solved problems with approach and complexity notes.
 | Day 06 | Stack — Min Stack | LeetCode 155 - Min Stack |
 | Day 07 | Queue — Implement using Stacks, Sorting — Bubble Sort | LeetCode 232 - Implement Queue using Stacks, Bubble Sort with optimization |
 | Day 08 | Recursion — Factorial, Fibonacci, Power of Two | LeetCode 231 - Power of Two |
+| Day 09 | Arrays — Largest & Second Largest Element, Big-O Complexity Analysis | Largest Element, Second Largest Element (Brute Force & Optimal), Time Complexity Analysis |
 
 ### Approach
 - Solving problems on LeetCode
