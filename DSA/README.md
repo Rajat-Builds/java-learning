@@ -14,6 +14,7 @@ Each day folder contains solved problems with approach and complexity notes.
 | Day 07 | Queue — Implement using Stacks, Sorting — Bubble Sort | LeetCode 232 - Implement Queue using Stacks, Bubble Sort with optimization |
 | Day 08 | Recursion — Factorial, Fibonacci, Power of Two | LeetCode 231 - Power of Two |
 | Day 09 | Arrays — Largest & Second Largest Element, Big-O Complexity Analysis | Largest Element, Second Largest Element (Brute Force & Optimal), Time Complexity Analysis |
+| Day 10 | Mid Level Math Weekly Contest 166 | LeetCode 1281 - Subtract the Product and Sum of Digits of an Integer |
 
 ### Approach
 - Solving problems on LeetCode
