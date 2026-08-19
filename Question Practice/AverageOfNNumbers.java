@@ -25,5 +25,6 @@ public class AverageOfNNumbers {
         double average = sum / nums;
 
         System.out.println("The average of the " + nums + " numbers is: " + average);
+        sc.close();
     }
 }
